@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Guitars</title>
+    <style>
+        table {
+          border: 1px solid;
+          border-collapse: collapse;
+          margin: 30px;
+        }
+  
+        table td,
+        th {
+          border-left: 1px solid #000;
+          border-right: 1px solid #000;
+        }
+  
+        table td:first-child {
+          border-left: none;
+        }
+  
+        table td:last-child {
+          border-right: none;
+        }
+        body{
+            background-color: rgb(248,234,202);
+        }
+    </style>
+</head>
+<body>
+    <label>Builder:</label>
+    <input id="builder"/>
+    <br/>
+    <label>Model:</label>
+    <input id="model"/>
+    <br/>
+    <label>Type:</label>
+    <input id="type"/>
+    <br/>
+    <label>Back wood:</label>
+    <input id="backWood"/>
+    <br/>
+    <label>Top wood:</label>
+    <input id="topWood"/>
+    <br/>
+    <button onclick="search()">Search</button>
+    <br/>
+    <table>
+        <thead>
+            <tr>
+                <th>Serial number</th>
+                <th>Builder</th>
+                <th>Model</th>
+                <th>Type</th>
+                <th>Back wood</th>
+                <th>Top wood</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="searchResult">
+
+        </tbody>
+    </table>
+    <script>
+        let guitars = [
+            {serialNumber : "100342", price : 1050, builder : "Fender", model : "C3" ,type : "Electric", backWood : "Cedar", topWood : "Sitka"},
+            {serialNumber : "100352", price : 1350, builder : "Fender", model : "C5" , type : "Electric", backWood : "Maple", topWood : "Sitka"},
+            {serialNumber : "100347", price : 1550, builder : "Fender", model : "A1" , type : "Electric", backWood : "Maple", topWood : "Indian Rosewood"},
+            {serialNumber : "104341", price : 950, builder : "Gibson", model : "B7" , type : "Electric", backWood : "Cedar", topWood : "Maple"},
+            {serialNumber : "100735", price : 1150, builder : "Gibson", model : "C2" , type : "Electric", backWood : "Mahogany", topWood : "Alder"},
+        ];
+        async function createTable(guitar, table){
+            let row = document.createElement("tr");
+                    let cell1 = document.createElement("td");
+                    let cell2 = document.createElement("td");
+                    let cell3 = document.createElement("td");
+                    let cell4 = document.createElement("td");
+                    let cell5 = document.createElement("td");
+                    let cell6 = document.createElement("td");
+                    let cell7 = document.createElement("td");
+                    let sn = document.createTextNode(guitar.serialNumber);
+                    let b = document.createTextNode(guitar.builder);
+                    let m = document.createTextNode(guitar.model);
+                    let t = document.createTextNode(guitar.type);
+                    let back = document.createTextNode(guitar.backWood);
+                    let top = document.createTextNode(guitar.topWood);
+                    let p = document.createTextNode(guitar.price);
+                    cell1.appendChild(sn);
+                    cell2.appendChild(b);
+                    cell3.appendChild(m);
+                    cell4.appendChild(t);
+                    cell5.appendChild(back);
+                    cell6.appendChild(top);
+                    cell7.appendChild(p);
+                    row.appendChild(cell1);
+                    row.appendChild(cell2);
+                    row.appendChild(cell3);
+                    row.appendChild(cell4);
+                    row.appendChild(cell5);
+                    row.appendChild(cell6);
+                    row.appendChild(cell7);
+                    table.appendChild(row);
+        }
+        async function search(){
+            let gBuilder = document.getElementById("builder").value;
+            let gModel = document.getElementById("model").value;
+            let gType = document.getElementById("type").value;
+            let gBack = document.getElementById("backWood").value;
+            let gTop = document.getElementById("topWood").value;
+            let table = document.getElementById("searchResult");
+            let searchGuitar = { builder: gBuilder, model: gModel, type: gType, backWood: gBack, topWood: gTop };
+            table.innerHTML = "";
+            for(let guitar of guitars){
+                if(!gBuilder && !gModel && !gType && !gBack && !gTop){
+                    createTable(guitar, table);
+                }else if(guitar.builder.toLowerCase() == gBuilder.toLowerCase()){
+                    createTable(guitar, table);
+                }else if(guitar.model.toLowerCase() == gModel.toLowerCase()){
+                    createTable(guitar, table);
+                }else if(guitar.type.toLowerCase() == gType.toLowerCase()){
+                    createTable(guitar, table);
+                }else if(guitar.backWood.toLowerCase() == gBack.toLowerCase()){
+                    createTable(guitar, table);
+                }else if(guitar.topWood.toLowerCase() == gTop.toLowerCase()){
+                    createTable(guitar, table);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
