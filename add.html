@@ -58,7 +58,9 @@
             body: JSON.stringify(guitar)
           };
           let response = await fetch(host + "/guitar/add", request);
-          if(response.status == 200){
+          if(guitar.serialNumber == false || guitar.price == false || guitar.builder == false || guitar.model == false || guitar.type == false || guitar.backWood == false || guitar.topWood == false){
+            message = "One or more fields was left blank. Please enter values into every field.";
+          }else if(response.status == 200){
             message = "The gutar was added successfully!";
           }else{
             console.log(response);

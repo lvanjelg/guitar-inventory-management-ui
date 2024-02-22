@@ -66,13 +66,7 @@
         </tbody>
     </table>
     <script>
-        let guitars = [
-            {serialNumber : "100342", price : 1050, builder : "Fender", model : "C3" ,type : "Electric", backWood : "Cedar", topWood : "Sitka"},
-            {serialNumber : "100352", price : 1350, builder : "Fender", model : "C5" , type : "Electric", backWood : "Maple", topWood : "Sitka"},
-            {serialNumber : "100347", price : 1550, builder : "Fender", model : "A1" , type : "Electric", backWood : "Maple", topWood : "Indian Rosewood"},
-            {serialNumber : "104341", price : 950, builder : "Gibson", model : "B7" , type : "Electric", backWood : "Cedar", topWood : "Maple"},
-            {serialNumber : "100735", price : 1150, builder : "Gibson", model : "C2" , type : "Electric", backWood : "Mahogany", topWood : "Alder"},
-        ];
+        let guitars = [];
         async function createTable(guitar, table){
             let row = document.createElement("tr");
                     let cell1 = document.createElement("td");
